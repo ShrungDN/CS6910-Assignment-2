@@ -246,7 +246,7 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
 
 def get_filters_plot(model):
     kernels = dict(model.named_parameters())
-    kernels = kernels['conv1.weight']
+    kernels = kernels['conv1.0.weight']
     n = int(np.floor(np.sqrt(kernels.shape[0])))
     fig, ax = plt.subplots(n, n, figsize=(1.5*n, 1.5*n))
     ax = ax.reshape(-1)
