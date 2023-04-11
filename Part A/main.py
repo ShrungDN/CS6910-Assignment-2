@@ -121,6 +121,6 @@ if __name__ == '__main__':
     
     if args.visualize_filters == 'True':
       filters_plot = get_filters_plot(model)
-      wandb.log({'Filters': wandb.Image(preds_plot)})
+      wandb.log({'Filters': wandb.Image(filters_plot)})
 
     wandb.finish()    
