@@ -220,5 +220,6 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
     for i in range(num_classes):
         for j in range(num_images):
             ax[j, i].imshow(counter[i][j])
+    plt.show()
     return fig
 

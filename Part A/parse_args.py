@@ -32,7 +32,7 @@ def parse_arguments():
     parser.add_argument('-sf3', '--size_filters3', type=int, default=5, help='Size of filters in 3rd convolution layer')
     parser.add_argument('-sf4', '--size_filters4', type=int, default=5, help='Size of filters in 4th convolution layer')
     parser.add_argument('-sf5', '--size_filters5', type=int, default=5, help='Size of filters in 5th convolution layer')
-    parser.add_argument('-vp', '--view_preds', type=str, default='False', help='If "True", it will log image and its predictions on the wandb project')
+    parser.add_argument('-vp', '--view_preds', type=str, default='False', help='If "True", it will log image and its predictions on the wandb project (if -wl is also "True")')
     parser.add_argument('-vf', '--visualize_filters', type=str, default='False', help='If "True", it will log the visualization of filters in 1st convolutional layer')
     # parser.add_argument('', '', type=str, default='', help='')
 
