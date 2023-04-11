@@ -14,7 +14,8 @@ def main(config, train_data_path, test_data_path):
   OPTIM = get_optimizer(config['OPTIM'])
   LOSS_FUNC = get_loss_func(config['LOSS_FUNC'])
 
-  model_config = {'ACTIVATION': get_activation(config['ACTIVATION']),
+  model_config = {'IMGDIMS': config['IMGDIMS'],
+                  'ACTIVATION': get_activation(config['ACTIVATION']),
                   'POOL': get_pooling(config['POOL']),
                   'NFC': config['NFC'],
                   'BN': config['BN'],

@@ -35,7 +35,12 @@ class CNNModel(Module):
     
     self.flatten = Flatten()
 
-    self.fc1 = Sequential(Linear(1024, model_config['NFC']),
+    w = model_config['IMAGE_DIMS'][0]
+    h = model_config['IMAGE_DIMS'][1]
+    conv_out_dim_w = (((((w-k[0]+1)*(0.5)-k[1]+1)*(0.5)-k[2]+1)*(0.5)-k[3]+1)*(0.5)-k[4]+1)*(0.5)
+    conv_out_dim_h = (((((h-k[0]+1)*(0.5)-k[1]+1)*(0.5)-k[2]+1)*(0.5)-k[3]+1)*(0.5)-k[4]+1)*(0.5)
+
+    self.fc1 = Sequential(Linear(conv_out_dim_w * conv_out_dim_h, model_config['NFC']),
                           self.act())
     self.fc2 = Sequential(Linear(model_config['NFC'], 10),
                           Softmax(dim=1))
