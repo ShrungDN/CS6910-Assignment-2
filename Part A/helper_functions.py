@@ -226,22 +226,19 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
         images = images + counter[k]
         labels = labels + [k]*len(counter[k])
     images = np.stack(images, axis=0)
-    images = torch.Tensor(images)
 
     model.eval()
-    outputs = model(images)
+    outputs = model(torch.Tensor(images))
     _, preds = torch.max(outputs.data, 1)
-    print(labels)
-    print(preds)
 
-
-
-    # fig, ax = plt.subplots(num_images, num_classes, figsize=(30, 15))
-    # for i in range(num_classes):
-    #     for j in range(num_images):
-    #         ax[j, i].imshow(counter[i][j])
-    # return fig
-
-            # images = images.numpy()
-            # labels = labels.numpy()
-
+    fig, ax = plt.subplots(num_images, num_classes, figsize=(15, 6))
+    ax = ax.reshape(-1, order='F')
+    for i in range(len(labels)):
+        img = images[i]
+        img = np.swapaxes(np.swapaxes(img, 1, 2), 0, 2)
+        img = img * 0.5 + 0.5
+        ax[i].imshow(img)
+        ax[i].set_title(f'Predicted: {preds[i]} \n Actual: {labels[i]}', fontsize=10)
+        ax[i].axis('off')
+    fig.show()
+    return fig
