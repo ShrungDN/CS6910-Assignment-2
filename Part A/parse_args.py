@@ -17,7 +17,12 @@ def parse_arguments():
     parser.add_argument('-da', '--data_aug', type=str, default='True', help='If "True", the data is augmented before training')
     parser.add_argument('-tdp', '--train_data_path', type=str, default='/content/inaturalist_12K/train', help='Path to directory with training data')
     parser.add_argument('-tedp', '--test_data_path', type=str, default='/content/inaturalist_12K/val', help='Path to directory with testing data')
-    # parser.add_argument('', '', type=str, default='', help='')
+    parser.add_argument('-dr', '--dropout', type=float, default=0.0, help='Dropout parameter between 0 and 1')
+    parser.add_argument('-a', '--activation', type=str, default='ReLU', help='Activation function to be used: "ReLU", "GELU", "SiLU" or "Mish"')
+    parser.add_argument('-nfc', '--num_fc', type=int, default=1000, help='Number of neurons in the fully connected layer')
+    parser.add_argument('-p', '--pool', type=str, default='MaxPool2d', help='Pooling Layer: "MaxPool2d", "AvgPool2d", "AdaptiveMaxPool2d" or "AdaptiveAvgPool2d"')
+    parser.add_argument('-bn', '--batch_norm', type=str, default='True', help='Batch Norm will be used if set to "True"')
+    # parser.add_argument('-nf', '--num_filters', type=int, default=64, help='')
     # parser.add_argument('', '', type=str, default='', help='')
     # parser.add_argument('', '', type=str, default='', help='')
     # parser.add_argument('', '', type=str, default='', help='')
@@ -29,7 +34,6 @@ def parse_arguments():
     
     # parser.add_argument('-nhl', '--num_layers', type=int, default=5, help='Number of hidden layers in the neural network')
     # parser.add_argument('-sz', '--hidden_size', type=int, default=128, help='Number of neurons in each hidden layer')
-    # parser.add_argument('-a', '--activation', type=str, default='ReLU', help='Activation function to be used: "identity", "sigmoid", "tanh" or "ReLU"')
     # parser.add_argument('-ds', '--dataset_scaling', type=str, default='standard', help='Type of scaling to be used for the data: "min_max" or "standard"')
    
     args = parser.parse_args()

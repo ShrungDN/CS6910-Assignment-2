@@ -8,6 +8,8 @@ from torchvision.datasets import ImageFolder
 from torch.utils.data import random_split
 from torch.nn import CrossEntropyLoss
 from torch.optim import Adadelta, Adagrad, Adam, NAdam, RMSprop
+from torch.nn import ReLU, GELU, SiLU, Mish
+from torch.nn import Conv2d, MaxPool2d, AvgPool2d, AdaptiveMaxPool2d, AdaptiveAvgPool2d
 
 def get_transforms(data_aug, imgdims, mean, std):
   if data_aug:
@@ -178,3 +180,25 @@ def get_loss_func(loss_func):
         return CrossEntropyLoss
     else:
         raise Exception('Incorrect Loss Function')
+
+def get_activation(act):
+    if act == 'ReLU':
+        return ReLU
+    elif act == 'GELU':
+        return GELU
+    elif act == 'SiLU':
+        return SiLU
+    elif act == 'Mish':
+        return Mish
+    else:
+        raise Exception('Incorrect Activation Function')
+
+def get_pooling(pool):
+    if pool == 'MaxPool2d':
+        return MaxPool2d
+    elif pool == 'AvgPool2d':
+        return AvgPool2d
+    elif pool == 'AdaptiveMaxPool2d':
+        return AdaptiveMaxPool2d
+    elif pool == 'AdaptiveAvgPool2d':
+        return AdaptiveAvgPool2d

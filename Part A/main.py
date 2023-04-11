@@ -13,6 +13,13 @@ def main(config, train_data_path, test_data_path):
   EPOCHS = config['EPOCHS']
   OPTIM = get_optimizer(config['OPTIM'])
   LOSS_FUNC = get_loss_func(config['LOSS_FUNC'])
+  DROPOUT = config['DROPOUT']
+  ACTIVATION = get_activation(config['ACTIVATION'])
+  NFC = config['NFC']
+  POOL = config['POOL']
+  BN = config['BN']
+
+  model_config = {}
 
   device = ('cuda' if torch.cuda.is_available() else 'cpu')
   print(f"Device: {device}\n")
@@ -21,7 +28,7 @@ def main(config, train_data_path, test_data_path):
 
   train_loader, val_loader, test_loader, class_to_idx = get_data_loaders(train_data_path, train_transform, test_data_path, val_test_transform, BATCH_SIZE)
 
-  model = CNNModel()
+  model = CNNModel(activation=ACTIVATION, pool=POOL, dropout=DROPOUT, nfc=NFC, bn=BN)
   model.to(device, non_blocking=True)
   summary(model, (3, IMGDIMS[0], IMGDIMS[1]))
   print()
@@ -57,17 +64,6 @@ def main(config, train_data_path, test_data_path):
 if __name__ == '__main__':
   args = parse_arguments()
 
-  config = {
-    'IMGDIMS': (256, 256),
-    'BATCH_SIZE': 64,
-    'MEAN_STD': ([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),
-    'DATA_AUG': True,
-    'LR': 1e-3,
-    'EPOCHS': 5,
-    'OPTIM': Adadelta,
-    'LOSS_FUNC': CrossEntropyLoss
-  }
-
   config = {'IMGDIMS': (args.dimsw, args.dimsh),
             'BATCH_SIZE': args.batch_size,
             'MEAN_STD': ([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),
@@ -75,7 +71,12 @@ if __name__ == '__main__':
             'LR': args.learning_rate,
             'EPOCHS': args.epochs,
             'OPTIM': args.optimizer,
-            'LOSS_FUNC': args.loss
+            'LOSS_FUNC': args.loss,
+            'DROPOUT': args.dropout,
+            'ACTIVATION': args.activation,
+            'NFC': args.num_fc,
+            'POOl': args.pool,
+            'BN': args.batch_norm
             }
   
   
