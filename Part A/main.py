@@ -93,6 +93,7 @@ if __name__ == '__main__':
 
 
   preds_plot = get_preds_plot(model, test_loader,  class_to_idx)
+  preds_plot.show()
 
 
 

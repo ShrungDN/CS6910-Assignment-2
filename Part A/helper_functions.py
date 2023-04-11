@@ -240,5 +240,4 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
         ax[i].imshow(img)
         ax[i].set_title(f'Predicted: {preds[i]} \n Actual: {labels[i]}', fontsize=10)
         ax[i].axis('off')
-    fig.show()
     return fig
