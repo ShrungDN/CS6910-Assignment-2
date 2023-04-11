@@ -83,21 +83,7 @@ if __name__ == '__main__':
             'SIZE_FILTERS': [args.size_filters1, args.size_filters2, args.size_filters3, args.size_filters4, args.size_filters5]
             }
   
-  
-  # main(config, '/content/inaturalist_12K/train', '/content/inaturalist_12K/val')
   model, logs, model_metrics, class_to_idx, test_loader = main(config, args.train_data_path, args.test_data_path)
-
-
-
-
-
-
-  preds_plot = get_preds_plot(model, test_loader,  class_to_idx)
-  preds_plot.show()
-
-
-
-
 
   print('Final Model Metrics:')
   print('Training: Accuracy = {} Loss = {}'.format(model_metrics['train_acc'], model_metrics['train_loss']))
@@ -129,10 +115,8 @@ if __name__ == '__main__':
     wandb.log({'Validation Accuracy': model_metrics['val_acc']})
     wandb.log({'Test Accuracy': model_metrics['test_acc']})
     
-    print(args.view_preds)
     if args.view_preds == 'True':
       preds_plot = get_preds_plot(model, test_loader,  class_to_idx)
-      print('Logging Predictions')
       wandb.log({'Predictions': wandb.Image(preds_plot)})
 
     wandb.finish()    
