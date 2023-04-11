@@ -12,7 +12,7 @@ class CNNModel(Module):
     self.act = activation
     self.pool = pool
     self.dropout = Dropout(dropout)
-    if bn:
+    if bn == 'True':
       self.conv1_bn = BatchNorm2d(64)
       self.conv2_bn = BatchNorm2d(64)
       self.conv3_bn = BatchNorm2d(64)
@@ -27,24 +27,19 @@ class CNNModel(Module):
 
     self.conv1 = Sequential(Conv2d(3, 64, kernel_size=5, padding=0),
                             self.act(),
-                            self.pool(kernel_size=2),
-                            self.conv1_bn)
+                            self.pool(kernel_size=2))
     self.conv2 = Sequential(Conv2d(64, 64, kernel_size=5, padding=0),
                             self.act(),
-                            self.pool(kernel_size=2),
-                            self.conv2_bn)
+                            self.pool(kernel_size=2))
     self.conv3 = Sequential(Conv2d(64, 64, kernel_size=5, padding=0),
                             self.act(),
-                            self.pool(kernel_size=2),
-                            self.conv3_bn)
+                            self.pool(kernel_size=2))
     self.conv4 = Sequential(Conv2d(64, 64, kernel_size=5, padding=0),
                             self.act(),
-                            self.pool(kernel_size=2),
-                            self.conv4_bn)
+                            self.pool(kernel_size=2))
     self.conv5 = Sequential(Conv2d(64, 64, kernel_size=5, padding=0),
                             self.act(),
-                            self.pool(kernel_size=2),
-                            self.conv5_bn)
+                            self.pool(kernel_size=2))
     
     self.flatten = Flatten()
 
@@ -56,12 +51,12 @@ class CNNModel(Module):
     
         
   def forward(self, x):
-    x = self.conv1(x)
-    x = self.conv2(x)
-    x = self.conv3(x)
-    x = self.conv4(x)
-    x = self.conv5(x)
-    
+    x = self.conv1_bn(self.conv1(x))
+    x = self.conv2_bn(self.conv2(x))
+    x = self.conv3_bn(self.conv3(x))
+    x = self.conv4_bn(self.conv4(x))
+    x = self.conv5_bn(self.conv5(x))
+
     x = self.flatten(x)
     x = self.dropout(x)
     x = self.fc1(x)
