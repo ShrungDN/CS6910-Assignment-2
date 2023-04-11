@@ -1,3 +1,4 @@
+import numpy as np
 import torch
 from torch.nn import Module, Sequential
 from torch.nn import Linear, Flatten, Softmax, Dropout
@@ -37,9 +38,10 @@ class CNNModel(Module):
 
     w = model_config['IMGDIMS'][0]
     h = model_config['IMGDIMS'][1]
-    conv_out_dim_w = (((((w-k[0]+1)*(0.5)-k[1]+1)*(0.5)-k[2]+1)*(0.5)-k[3]+1)*(0.5)-k[4]+1)*(0.5)
-    conv_out_dim_h = (((((h-k[0]+1)*(0.5)-k[1]+1)*(0.5)-k[2]+1)*(0.5)-k[3]+1)*(0.5)-k[4]+1)*(0.5)
+    conv_out_dim_w = np.floor((np.floor((np.floor((np.floor((np.floor((w-k[0]+1)*0.5)-k[1]+1)*0.5)-k[2]+1)*0.5)-k[3]+1)*0.5)-k[4]+1)*0.5)
+    conv_out_dim_h = np.floor((np.floor((np.floor((np.floor((np.floor((h-k[0]+1)*0.5)-k[1]+1)*0.5)-k[2]+1)*0.5)-k[3]+1)*0.5)-k[4]+1)*0.5)
     lin_input_dim = int(conv_out_dim_h * conv_out_dim_w * n[4])
+    
     self.fc1 = Sequential(Linear(lin_input_dim, model_config['NFC']),
                           self.act())
     self.fc2 = Sequential(Linear(model_config['NFC'], 10),
