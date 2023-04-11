@@ -34,15 +34,6 @@ def parse_arguments():
     parser.add_argument('-sf5', '--size_filters5', type=int, default=5, help='Size of filters in 5th convolution layer')
     parser.add_argument('-vp', '--view_preds', type=str, default='False', help='If "True", it will log image and its predictions on the wandb project (if -wl is also "True")')
     parser.add_argument('-vf', '--visualize_filters', type=str, default='False', help='If "True", it will log the visualization of filters in 1st convolutional layer')
-    # parser.add_argument('', '', type=str, default='', help='')
-
-    
-    
-    
-    
-    # parser.add_argument('-nhl', '--num_layers', type=int, default=5, help='Number of hidden layers in the neural network')
-    # parser.add_argument('-sz', '--hidden_size', type=int, default=128, help='Number of neurons in each hidden layer')
-    # parser.add_argument('-ds', '--dataset_scaling', type=str, default='standard', help='Type of scaling to be used for the data: "min_max" or "standard"')
    
     args = parser.parse_args()
     return args

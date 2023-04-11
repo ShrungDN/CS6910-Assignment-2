@@ -243,3 +243,17 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
         ax[i].axis('off')
     fig.suptitle('Predictions of images in test dataset')
     return fig
+
+def get_filters_plot(model):
+    kernels = dict(model.named_parameters())
+    kernels = kernels['conv1.weight']
+    n = int(np.floor(np.sqrt(kernels.shape[0])))
+    fig, ax = plt.subplots(n, n, figsize=(1.5*n, 1.5*n))
+    ax = ax.reshape(-1)
+    for i in range(len(ax)):
+        img = np.swapaxes(np.swapaxes(kernels[i].detach().numpy(), 1, 2), 0, 2)
+        img = (img - np.min(img)) / (np.max(img) - np.min(img))
+        ax[i].imshow(img)
+        ax[i].axis('off')
+    fig.suptitle('Kernels of first Convolutional Layer')
+    return fig
