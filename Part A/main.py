@@ -75,7 +75,7 @@ if __name__ == '__main__':
             'DROPOUT': args.dropout,
             'ACTIVATION': args.activation,
             'NFC': args.num_fc,
-            'POOl': args.pool,
+            'POOL': args.pool,
             'BN': args.batch_norm
             }
   
