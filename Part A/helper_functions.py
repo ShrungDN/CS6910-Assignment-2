@@ -42,8 +42,8 @@ def get_data_loaders(train_data_path, train_transform, test_data_path, val_test_
     train_dataset, val_dataset = random_split(train_val_dataset, [0.8, 0.2])
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=2, pin_memory=True)
-    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=True)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=True)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True, num_workers=2, pin_memory=True)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True, num_workers=2, pin_memory=True)
     return train_loader, val_loader, test_loader, train_val_dataset.class_to_idx
 
 def train(model, train_loader, optimizer, criterion, device):
@@ -209,16 +209,39 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
     idx_to_class = {class_to_idx[k]:k for k in class_to_idx.keys()}
     counter = {i:[] for i in range(num_classes)}
     c = num_images * num_classes
-    while c != 0:
+    while c > 0:
         for data in test_loader:
+            if c <= 0:
+                break
             images, labels = data
+            images = images.numpy()
+            labels = labels.numpy()
             for image, label in zip(images, labels):
-                if len(counter[label]) < 3:
+                if len(counter[label]) < num_images:
                     counter[label].append(image)
                     c -= 1
-    fig, ax = plt.subplots(num_images, num_classes, figsize=(30, 15))
-    for i in range(num_classes):
-        for j in range(num_images):
-            ax[j, i].imshow(counter[i][j])
-    return fig
+    images = []
+    labels = []
+    for k in counter.keys():
+        images = images + counter[k]
+        labels = labels + [k]*len(counter[k])
+    images = np.stack(images, axis=0)
+    images = torch.Tensor(images)
+
+    model.eval()
+    outputs = model(image)
+    _, preds = torch.max(outputs.data, 1)
+    print(labels)
+    print(preds)
+
+
+
+    # fig, ax = plt.subplots(num_images, num_classes, figsize=(30, 15))
+    # for i in range(num_classes):
+    #     for j in range(num_images):
+    #         ax[j, i].imshow(counter[i][j])
+    # return fig
+
+            # images = images.numpy()
+            # labels = labels.numpy()
 
