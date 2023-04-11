@@ -35,8 +35,8 @@ class CNNModel(Module):
     
     self.flatten = Flatten()
 
-    w = model_config['IMAGE_DIMS'][0]
-    h = model_config['IMAGE_DIMS'][1]
+    w = model_config['IMGDIMS'][0]
+    h = model_config['IMGDIMS'][1]
     conv_out_dim_w = (((((w-k[0]+1)*(0.5)-k[1]+1)*(0.5)-k[2]+1)*(0.5)-k[3]+1)*(0.5)-k[4]+1)*(0.5)
     conv_out_dim_h = (((((h-k[0]+1)*(0.5)-k[1]+1)*(0.5)-k[2]+1)*(0.5)-k[3]+1)*(0.5)-k[4]+1)*(0.5)
 
