@@ -211,8 +211,8 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
     c = num_images * num_classes
     while c != 0:
         for data in test_loader:
-            for d in data:
-                image, label = d
+            images, labels = data
+            for image, label in zip(images, labels):
                 if len(counter[label]) < 3:
                     counter[label].append(image)
                     c -= 1

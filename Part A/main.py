@@ -117,6 +117,7 @@ if __name__ == '__main__':
     wandb.log({'Validation Accuracy': model_metrics['val_acc']})
     wandb.log({'Test Accuracy': model_metrics['test_acc']})
     
+    print(args.view_preds)
     if args.view_preds == 'True':
       preds_plot = get_preds_plot(model, test_loader,  class_to_idx)
       print('Logging Predictions')
