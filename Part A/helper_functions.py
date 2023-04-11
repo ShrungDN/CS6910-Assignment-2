@@ -229,7 +229,7 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
     images = torch.Tensor(images)
 
     model.eval()
-    outputs = model(image)
+    outputs = model(images)
     _, preds = torch.max(outputs.data, 1)
     print(labels)
     print(preds)
