@@ -230,7 +230,8 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
     model.eval()
     outputs = model(torch.Tensor(images))
     _, preds = torch.max(outputs.data, 1)
-
+    preds = preds.numpy()
+    
     fig, ax = plt.subplots(num_images, num_classes, figsize=(15, 10))
     ax = ax.reshape(-1, order='F')
     for i in range(len(labels)):
