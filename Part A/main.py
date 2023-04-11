@@ -6,20 +6,21 @@ from torchsummary import summary
 
 def main(config, train_data_path, test_data_path):
   IMGDIMS = config['IMGDIMS']
-  BATCH_SIZE = config['BATCH_SIZE']
   MEAN, STD = config['MEAN_STD']
   DATA_AUG = config['DATA_AUG']
+  BATCH_SIZE = config['BATCH_SIZE']
   LR = config['LR']
   EPOCHS = config['EPOCHS']
   OPTIM = get_optimizer(config['OPTIM'])
   LOSS_FUNC = get_loss_func(config['LOSS_FUNC'])
-  DROPOUT = config['DROPOUT']
-  ACTIVATION = get_activation(config['ACTIVATION'])
-  NFC = config['NFC']
-  POOL = get_pooling(config['POOL'])
-  BN = config['BN']
 
-  model_config = {}
+  model_config = {'ACTIVATION': get_activation(config['ACTIVATION']),
+                  'POOL': get_pooling(config['POOL']),
+                  'NFC': config['NFC'],
+                  'BN': config['BN'],
+                  'DROPOUT': config['DROPOUT'],
+                  'NUM_FILTERS': config['NUM_FILTERS'],
+                  'SIZE_FILTERS': config['SIZE_FILTERS']}
 
   device = ('cuda' if torch.cuda.is_available() else 'cpu')
   print(f"Device: {device}\n")
@@ -28,7 +29,7 @@ def main(config, train_data_path, test_data_path):
 
   train_loader, val_loader, test_loader, class_to_idx = get_data_loaders(train_data_path, train_transform, test_data_path, val_test_transform, BATCH_SIZE)
 
-  model = CNNModel(activation=ACTIVATION, pool=POOL, dropout=DROPOUT, nfc=NFC, bn=BN)
+  model = CNNModel(model_config)
   model.to(device, non_blocking=True)
   summary(model, (3, IMGDIMS[0], IMGDIMS[1]))
   print()
@@ -76,7 +77,9 @@ if __name__ == '__main__':
             'ACTIVATION': args.activation,
             'NFC': args.num_fc,
             'POOL': args.pool,
-            'BN': args.batch_norm
+            'BN': args.batch_norm,
+            'NUM_FILTERS': [args.num_filters1, args.num_filters2, args.num_filters3, args.num_filters4, args.num_filters5],
+            'SIZE_FILTERS': [args.size_filters1, args.size_filters2, args.size_filters3, args.size_filters4, args.size_filters5]
             }
   
   
