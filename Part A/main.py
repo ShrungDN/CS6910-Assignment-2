@@ -16,7 +16,7 @@ def main(config, train_data_path, test_data_path):
   DROPOUT = config['DROPOUT']
   ACTIVATION = get_activation(config['ACTIVATION'])
   NFC = config['NFC']
-  POOL = config['POOL']
+  POOL = get_pooling(config['POOL'])
   BN = config['BN']
 
   model_config = {}
