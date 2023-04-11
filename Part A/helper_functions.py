@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from tqdm import tqdm
 
 import torch
@@ -202,3 +203,22 @@ def get_pooling(pool):
         return AdaptiveMaxPool2d
     elif pool == 'AdaptiveAvgPool2d':
         return AdaptiveAvgPool2d
+
+def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
+    num_classes = len(class_to_idx.keys())
+    idx_to_class = {class_to_idx[k]:k for k in class_to_idx.keys()}
+    counter = {i:[] for i in range(num_classes)}
+    c = num_images * num_classes
+    while c != 0:
+        for data in test_loader:
+            for d in data:
+                image, label = d
+                if len(counter[label]) < 3:
+                    counter[label].append(image)
+                    c -= 1
+    fig, ax = plt.subplots(num_images, num_classes, figsize=(30, 15))
+    for i in range(num_classes):
+        for j in range(num_images):
+            ax[j, i].imshow(counter[i][j])
+    return fig
+

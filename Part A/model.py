@@ -18,6 +18,14 @@ class CNNModel(Module):
     n = model_config['NUM_FILTERS']
     k = model_config['SIZE_FILTERS']
 
+    w = model_config['IMGDIMS'][0]
+    h = model_config['IMGDIMS'][1]
+    conv_out_dim_w = np.floor((np.floor((np.floor((np.floor((np.floor((w-k[0]+1)*0.5)-k[1]+1)*0.5)-k[2]+1)*0.5)-k[3]+1)*0.5)-k[4]+1)*0.5)
+    conv_out_dim_h = np.floor((np.floor((np.floor((np.floor((np.floor((h-k[0]+1)*0.5)-k[1]+1)*0.5)-k[2]+1)*0.5)-k[3]+1)*0.5)-k[4]+1)*0.5)
+    lin_input_dim = int(conv_out_dim_h * conv_out_dim_w * n[4])
+    if lin_input_dim <= 0:
+      raise Exception('Increase input image dimensions or use smaller convolution kernels')
+
     self.conv1 = Sequential(Conv2d(3, n[0], kernel_size=k[0], padding=0),
                             self.act(),
                             self.pool(kernel_size=2))
@@ -35,12 +43,6 @@ class CNNModel(Module):
                             self.pool(kernel_size=2))
     
     self.flatten = Flatten()
-
-    w = model_config['IMGDIMS'][0]
-    h = model_config['IMGDIMS'][1]
-    conv_out_dim_w = np.floor((np.floor((np.floor((np.floor((np.floor((w-k[0]+1)*0.5)-k[1]+1)*0.5)-k[2]+1)*0.5)-k[3]+1)*0.5)-k[4]+1)*0.5)
-    conv_out_dim_h = np.floor((np.floor((np.floor((np.floor((np.floor((h-k[0]+1)*0.5)-k[1]+1)*0.5)-k[2]+1)*0.5)-k[3]+1)*0.5)-k[4]+1)*0.5)
-    lin_input_dim = int(conv_out_dim_h * conv_out_dim_w * n[4])
     
     self.fc1 = Sequential(Linear(lin_input_dim, model_config['NFC']),
                           self.act())
