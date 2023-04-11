@@ -87,6 +87,17 @@ if __name__ == '__main__':
   # main(config, '/content/inaturalist_12K/train', '/content/inaturalist_12K/val')
   model, logs, model_metrics, class_to_idx, test_loader = main(config, args.train_data_path, args.test_data_path)
 
+
+
+
+
+
+  preds_plot = get_preds_plot(model, test_loader,  class_to_idx)
+
+
+
+
+
   print('Final Model Metrics:')
   print('Training: Accuracy = {} Loss = {}'.format(model_metrics['train_acc'], model_metrics['train_loss']))
   print('Validation: Accuracy = {} Loss = {}'.format(model_metrics['val_acc'], model_metrics['val_loss']))
