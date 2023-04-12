@@ -7,7 +7,7 @@ sweep_config_1 = {
         'epochs': {'values': [10]},
         'batch_size': {'values': [64]},
         'optimizer': {'values': ['Adam']},
-        'pooling': {'values': ['MaxPool2d']},
+        'pool': {'values': ['MaxPool2d']},
         'nfc': {'values': [1000]},
         'lr': {'values': [1e-3, 1e-4, 1e-5]},
         'data_aug': {'values': ['False']},
