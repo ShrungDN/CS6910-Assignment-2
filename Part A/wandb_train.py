@@ -57,4 +57,4 @@ def wandb_train():
   
   wandb.finish()
 
-wandb.agent(sweep_id, function=main, count=50)
+wandb.agent(sweep_id, function=wandb_train, count=50)
