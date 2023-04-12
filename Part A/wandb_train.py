@@ -25,11 +25,11 @@ def wandb_train():
   run = wandb.init(entity=ENTITY, project=PROJECT, name=NAME)
 
   config = {'IMGDIMS': (args.dimsw, args.dimsh),
-            'BATCH_SIZE': wandb.config.epochs,
+            'BATCH_SIZE': wandb.config.batch_size,
             'MEAN_STD': ([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),
             'DATA_AUG': wandb.config.data_aug,
             'LR': wandb.config.lr,
-            'EPOCHS': wandb.config.epochs,
+            'EPOCHS': 1,
             'OPTIM': wandb.config.optimizer,
             'LOSS_FUNC': args.loss,
             'DROPOUT': wandb.config.dropout,
