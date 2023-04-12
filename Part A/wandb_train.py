@@ -38,7 +38,7 @@ def wandb_train():
   name = 'bs:{}_da:{}_lr:{}_e:{}_dr:{}_act:{}_nfc:{}_bn:{}_nf:{},{},{},{},{}_sf:{},{},{},{},{}'.format(
     config['BATCH_SIZE'], config['DATA_AUG'], config['LR'], config['EPOCHS'], config['DROPOUT'], config['ACTIVATION'],
     config['NFC'], config['BN'], config['NUM_FILTERS'][0], config['NUM_FILTERS'][1], config['NUM_FILTERS'][2],
-    config['NUM_FILTERS'][3], config['NUM_FILTERS'][4], config['NUM_FILTERS'][5], config['SIZE_FILTERS'][0], 
+    config['NUM_FILTERS'][3], config['NUM_FILTERS'][4], config['SIZE_FILTERS'][0], 
     config['SIZE_FILTERS'][1], config['SIZE_FILTERS'][2], config['SIZE_FILTERS'][3], config['SIZE_FILTERS'][4]
   )
 
