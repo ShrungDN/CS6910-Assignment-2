@@ -41,7 +41,7 @@ def wandb_train():
             'SIZE_FILTERS': [wandb.config.sf1, wandb.config.sf2, wandb.config.sf3, wandb.config.sf4, wandb.config.sf5]
             }
 
-  name = 'bs:{}_da:{}_lr:{}_e:{}_dr:{}_act:{}_nfc:{}_bn:{}_nf:{},{},{},{},{}_sf:{},{},{},{},{}'.format(
+  name = '{}__bs:{}_da:{}_lr:{}_e:{}_dr:{}_act:{}_nfc:{}_bn:{}_nf:{},{},{},{},{}_sf:{},{},{},{},{}'.format(args.sweep_config,
     config['BATCH_SIZE'], config['DATA_AUG'], config['LR'], config['EPOCHS'], config['DROPOUT'], config['ACTIVATION'],
     config['NFC'], config['BN'], config['NUM_FILTERS'][0], config['NUM_FILTERS'][1], config['NUM_FILTERS'][2],
     config['NUM_FILTERS'][3], config['NUM_FILTERS'][4], config['SIZE_FILTERS'][0], 

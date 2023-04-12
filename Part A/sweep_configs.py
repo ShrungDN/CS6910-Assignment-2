@@ -1,7 +1,7 @@
 # Methodology of sweeps is done as in sweeps.txt
 # Sweeps 1-8:
 SC1_1= {
-    'name': 'sweep_config_1',
+    'name': 'SC1',
     'method': 'grid',
     'name': 'sweep',
     'metric': {'goal': 'maximize', 'name': 'val_acc'},
@@ -31,7 +31,7 @@ SC1_1= {
 }
 
 SC1_2= {
-    'name': 'sweep_config_1',
+    'name': 'SC1',
     'method': 'grid',
     'name': 'sweep',
     'metric': {'goal': 'maximize', 'name': 'val_acc'},
@@ -61,7 +61,7 @@ SC1_2= {
 }
 
 SC1_3= {
-    'name': 'sweep_config_1',
+    'name': 'SC1',
     'method': 'grid',
     'name': 'sweep',
     'metric': {'goal': 'maximize', 'name': 'val_acc'},

@@ -11,6 +11,7 @@ from torch.nn import CrossEntropyLoss
 from torch.optim import Adadelta, Adagrad, Adam, NAdam, RMSprop
 from torch.nn import ReLU, GELU, SiLU, Mish
 from torch.nn import Conv2d, MaxPool2d, AvgPool2d, AdaptiveMaxPool2d, AdaptiveAvgPool2d
+from torchvision import models
 
 def get_transforms(data_aug, imgdims, mean, std):
   if data_aug:
@@ -254,3 +255,10 @@ def get_filters_plot(model):
         ax[i].axis('off')
     fig.suptitle('Kernels of first Convolutional Layer')
     return fig
+
+def get_model(name):
+    if name == 'vgg16':
+        model = models.vgg16(pretrained=True)
+
+    for param in model.parameters():
+        param.requires_grad = False
