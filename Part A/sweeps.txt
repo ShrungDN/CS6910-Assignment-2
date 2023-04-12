@@ -21,42 +21,56 @@ Search space:
 
 The sweeps are done selectively as follows:
 
-sweeps 1-4: changing dropout and BN: lr=1e-3, da=False, dr=sweep, act=ReLU, bn=sweep, nk=64,64,64,64,64 sk=5,5,5,5,5
-1. dropout: 0, BN: False
-2. dropout: 0.3, BN: False
-3. dropout: 0, BN: True
-4. dropout:0.3, BN: True
+sweeps 1-8: changing dropout, BN and lr: lr=sweep, da=False, dr=sweep, act=ReLU, bn=sweep, nk=64,64,64,64,64 sk=5,5,5,5,5
+done 1. lr:1e-3, dropout: 0, BN: False
+done 2. lr:1e-3, dropout: 0.3, BN: False
+done 3. lr:1e-3, dropout: 0, BN: True
+done 4. lr:1e-3, dropout: 0.3, BN: True
+done 5. lr:1e-4, dropout: 0, BN: False
+done 6. lr:1e-4, dropout: 0.3, BN: False
+done 7. lr:1e-4, dropout: 0, BN: True
+done 8. lr:1e-4, dropout: 0.3, BN: True
+9. lr:1e-5, dropout: 0, BN: False
+10. lr:1e-5, dropout: 0.3, BN: False
+11. lr:1e-5, dropout: 0, BN: True
+12. lr:1e-5, dropout: 0.3, BN: True
 
 (choose best config from above)
-sweeps 5-5: changing data augmentation: lr=1e-3, da=sweep, dr=?, act=ReLU, bn=?, nk=64,64,64,64,64 sk=5,5,5,5,5
-5. da: True (false already done in best config of above)
+sweeps 13-14: changing data augmentation: lr=?, da=sweep, dr=?, act=ReLU, bn=?, nk=64,64,64,64,64 sk=5,5,5,5,5
+13. da: False  
+14. da: True 
 
-sweeps 6-12 :changing LR and activation: lr=sweep, da=?, dr=?, act=sweep, bn=?, nk=64,64,64,64,64 sk=5,5,5,5,5
-~~6. lr:1e-3, act:ReLU (done already)
-6. lr:1e-3, act:GELU
-7. lr:1e-3, act:SiLU
-8. lr:1e-3, act:Mish
-9. lr:1e-4, act:ReLU
-10. lr:1e-4, act:GELU
-11. lr:1e-4, act:SiLU
-12. lr:1e-4, act:Mish
+(choose best config from above)
+sweeps 14-16 :changing activation: lr=?, da=?, dr=?, act=sweep, bn=?, nk=64,64,64,64,64 sk=5,5,5,5,5
+    (ReLU already done)
+14. act:GELU
+15. act:SiLU
+16. act:Mish
 
-sweeps 13-20 :changing LR and activation: lr=?, da=?, dr=?, act=?, bn=?, nk=sweep sk=sweep
+(choose best config from above)
+sweeps 17-24 :kernel size and number: lr=?, da=?, dr=?, act=?, bn=?, nk=sweep sk=sweep
 ~~13: nk=64,64,64,64,64 sk=5,5,5,5,5 (done)
-13. nk=64,64,64,64,64 sk=9,9,3,3,3
-14. nk=64,64,64,64,64 sk=3,3,3,9,9
+17. nk=64,64,64,64,64 sk=9,9,3,3,3
+18. nk=64,64,64,64,64 sk=3,3,3,9,9
+19: nk=8,16,32,64,128 sk=5,5,5,5,5
+20. nk=8,16,32,64,128 sk=9,9,3,3,3
+21. nk=8,16,32,64,128 sk=3,3,3,9,9
+22: nk=128,64,32,16,8 sk=5,5,5,5,5
+23. nk=128,64,32,16,8 sk=9,9,3,3,3
+24. nk=128,64,32,16,8 sk=3,3,3,9,9
 
-15: nk=8,16,32,64,128 sk=5,5,5,5,5
-16. nk=8,16,32,64,128 sk=9,9,3,3,3
-17. nk=8,16,32,64,128 sk=3,3,3,9,9
+Choose best model from above sweeps and fine tune further: lr=?, da=?, dr=?, act=?, bn=?, nk=? sk=?
 
-18: nk=128,64,32,16,8 sk=5,5,5,5,5
-19. nk=128,64,32,16,8 sk=9,9,3,3,3
-20. nk=128,64,32,16,8 sk=3,3,3,9,9
-
-sweeps 21- :changing epochs and tuning dense layer size and lr to get best model: lr=?, da=?, dr=?, act=?, bn=?, nk=? sk=?
-    # epochs kept to 15
-21. epochs: 15, lr:(from above), nfc:1000
-22. epochs:15, lr:(from above)/10, nfc:1000
-23. epochs:15, lr:(from above), nfc:2000
-24. epochs:15, lr:(from above)/10, nfc:2000
+sweeps 25- : epochs:15, lr=[lr_opt, lr_opt*10, lr_opt/10], batch_size: [32, 64], nfc: [1000, 2000]
+~~25. lr: lr_opt, bs:64, nfc:1000 (done)
+25. lr:lr_opt, bs:64, nfc:2000
+26. lr:lr_opt, bs:32, nfc:1000
+27. lr:lr_opt, bs:32, nfc:2000
+28. lr:lr_opt*10, bs:64, nfc:1000
+29. lr:lr_opt*10, bs:64, nfc:2000
+30. lr:lr_opt*10, bs:32, nfc:1000
+31. lr:lr_opt*10, bs:32, nfc:2000
+32. lr:lr_opt/10, bs:64, nfc:1000
+33. lr:lr_opt/10, bs:64, nfc:2000
+34. lr:lr_opt/10, bs:32, nfc:1000
+35. lr:lr_opt/10, bs:32, nfc:2000

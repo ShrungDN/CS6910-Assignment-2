@@ -100,7 +100,29 @@ if __name__ == '__main__':
     wandb.login()
     run = wandb.init(entity=ENTITY, project=PROJECT, name=NAME)
 
-    wandb.log(config)
+    wandb.log({
+          'BATCH_SIZE': config['BATCH_SIZE'],
+          'DATA_AUG': config['DATA_AUG'],
+          'LR': config['LR'],
+          'EPOCHS': config['EPOCHS'],
+          'OPTIM': config['OPTIM'],
+          'LOSS_FUNC': config['LOSS_FUNC'],
+          'DROPOUT': config['DROPOUT'],
+          'ACTIVATION': config['ACTIVATION'],
+          'NFC': config['NFC'],
+          'POOL': config['POOL'],
+          'BN': config['BN'],
+          'NF1': args.num_filters1,
+          'NF2': args.num_filters2,
+          'NF3': args.num_filters3,
+          'NF4': args.num_filters4,
+          'NF5': args.num_filters5,
+          'SF1': args.size_filters1,
+          'SF2': args.size_filters2,
+          'SF3': args.size_filters3,
+          'SF4': args.size_filters4,
+          'SF5': args.size_filters5
+    })
 
     for i in range(len(logs['epochs'])):
       wandb.log({
