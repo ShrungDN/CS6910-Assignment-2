@@ -29,7 +29,7 @@ def wandb_train():
             'MEAN_STD': ([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),
             'DATA_AUG': wandb.config.data_aug,
             'LR': wandb.config.lr,
-            'EPOCHS': 1,
+            'EPOCHS': wandb.config.epochs,
             'OPTIM': wandb.config.optimizer,
             'LOSS_FUNC': args.loss,
             'DROPOUT': wandb.config.dropout,
