@@ -9,7 +9,7 @@ Search space:
     # Hyperparameters that are tuned (selectively):
         learning rate: [1e-3, 1e-4]
         data augmentation: [T, F]
-        dropout: [0, 0.2]
+        dropout: [0, 0.3]
         activation: [ReLU, GELU, SiLU, Mish]
         batch norm: [T, F]
         number of kernels: [[64, 64, 64, 64, 64],
@@ -23,9 +23,9 @@ The sweeps are done selectively as follows:
 
 sweeps 1-4: changing dropout and BN: lr=1e-3, da=False, dr=sweep, act=ReLU, bn=sweep, nk=64,64,64,64,64 sk=5,5,5,5,5
 1. dropout: 0, BN: False
-2. dropout: 0.2, BN: False
+2. dropout: 0.3, BN: False
 3. dropout: 0, BN: True
-4. dropout:0.2, BN: True
+4. dropout:0.3, BN: True
 
 (choose best config from above)
 sweeps 5-5: changing data augmentation: lr=1e-3, da=sweep, dr=?, act=ReLU, bn=?, nk=64,64,64,64,64 sk=5,5,5,5,5
