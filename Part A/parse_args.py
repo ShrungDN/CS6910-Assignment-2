@@ -38,6 +38,6 @@ def parse_arguments():
     
     parser.add_argument('-vp', '--view_preds', type=str, default='False', help='If "True", it will log image and its predictions on the wandb project (if -wl is also "True")')
     parser.add_argument('-vf', '--visualize_filters', type=str, default='False', help='If "True", it will log the visualization of filters in 1st convolutional layer')
-   
+    parser.add_argument('-sc', '--sweep_config', type=str, default='SC1', help='Used with wandb_train.py to choose which sweep config to use')
     args = parser.parse_args()
     return args
