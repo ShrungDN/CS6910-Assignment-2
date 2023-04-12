@@ -1,0 +1,62 @@
+Search space:
+    # Hyperparameters that are not tuned/ tuned only on best model
+        batch size: 64
+        epochs: 10
+        optimizer: Adam
+        pooling layer: MaxPool2d
+        dense layer size: 1000
+
+    # Hyperparameters that are tuned (selectively):
+        learning rate: [1e-3, 1e-4]
+        data augmentation: [T, F]
+        dropout: [0, 0.2]
+        activation: [ReLU, GELU, SiLU, Mish]
+        batch norm: [T, F]
+        number of kernels: [[64, 64, 64, 64, 64],
+                          [8, 16, 32, 64, 128],
+                          [128, 64, 32, 16, 8]]
+        shape of kernels: [[5, 5, 5, 5, 5],
+                           [9, 9, 3, 3, 3],
+                           [3, 3, 3, 9, 9]]
+
+The sweeps are done selectively as follows:
+
+sweeps 1-4: changing dropout and BN: lr=1e-3, da=False, dr=sweep, act=ReLU, bn=sweep, nk=64,64,64,64,64 sk=5,5,5,5,5
+1. dropout: 0, BN: False
+2. dropout: 0.2, BN: False
+3. dropout: 0, BN: True
+4. dropout:0.2, BN: True
+
+(choose best config from above)
+sweeps 5-5: changing data augmentation: lr=1e-3, da=sweep, dr=?, act=ReLU, bn=?, nk=64,64,64,64,64 sk=5,5,5,5,5
+5. da: True (false already done in best config of above)
+
+sweeps 6-12 :changing LR and activation: lr=sweep, da=?, dr=?, act=sweep, bn=?, nk=64,64,64,64,64 sk=5,5,5,5,5
+~~6. lr:1e-3, act:ReLU (done already)
+6. lr:1e-3, act:GELU
+7. lr:1e-3, act:SiLU
+8. lr:1e-3, act:Mish
+9. lr:1e-4, act:ReLU
+10. lr:1e-4, act:GELU
+11. lr:1e-4, act:SiLU
+12. lr:1e-4, act:Mish
+
+sweeps 13-20 :changing LR and activation: lr=?, da=?, dr=?, act=?, bn=?, nk=sweep sk=sweep
+~~13: nk=64,64,64,64,64 sk=5,5,5,5,5 (done)
+13. nk=64,64,64,64,64 sk=9,9,3,3,3
+14. nk=64,64,64,64,64 sk=3,3,3,9,9
+
+15: nk=8,16,32,64,128 sk=5,5,5,5,5
+16. nk=8,16,32,64,128 sk=9,9,3,3,3
+17. nk=8,16,32,64,128 sk=3,3,3,9,9
+
+18: nk=128,64,32,16,8 sk=5,5,5,5,5
+19. nk=128,64,32,16,8 sk=9,9,3,3,3
+20. nk=128,64,32,16,8 sk=3,3,3,9,9
+
+sweeps 21- :changing epochs and tuning dense layer size and lr to get best model: lr=?, da=?, dr=?, act=?, bn=?, nk=? sk=?
+    # epochs kept to 15
+21. epochs: 15, lr:(from above), nfc:1000
+22. epochs:15, lr:(from above)/10, nfc:1000
+23. epochs:15, lr:(from above), nfc:2000
+24. epochs:15, lr:(from above)/10, nfc:2000

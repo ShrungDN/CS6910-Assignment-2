@@ -55,7 +55,7 @@ def main(config, train_data_path, test_data_path):
     logs['train_loss'].append(train_epoch_loss)
     logs['train_acc'].append(train_epoch_acc)
     logs['val_loss'].append(val_epoch_loss)
-    logs['val_acc'].append(val_epoch_loss)
+    logs['val_acc'].append(val_epoch_acc)
 
     print(f'Training: Loss = {train_epoch_loss:.4f} Accuracy = {train_epoch_acc:.4f}  Validation: Loss = {val_epoch_loss:.4f} Accuracy = {val_epoch_acc:.4f}')
     print('-'*50)
