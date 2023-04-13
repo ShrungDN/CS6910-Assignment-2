@@ -233,13 +233,14 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
     fig, ax = plt.subplots(num_images, num_classes, figsize=(15, 6))
     ax = ax.reshape(-1, order='F')
     for i in range(len(labels)):
-        img = images[i].numpy()
+        img = images[i]
         img = np.swapaxes(np.swapaxes(img, 1, 2), 0, 2)
         img = img * 0.5 + 0.5
         ax[i].imshow(img)
         ax[i].set_title(f'Actual: {idx_to_class[labels[i]]} [{labels[i]}] \n Predicted: {idx_to_class[preds[i]]} [{preds[i]}]', fontsize=7)
         ax[i].axis('off')
     fig.suptitle('Predictions of images in test dataset')
+    print('IMAGE PLOT FORMED')
     return fig
 
 def get_filters_plot(model):
