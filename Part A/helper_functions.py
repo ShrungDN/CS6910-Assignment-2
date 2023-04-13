@@ -202,6 +202,7 @@ def get_pooling(pool):
         return AdaptiveAvgPool2d
 
 def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
+    device = ('cuda' if torch.cuda.is_available() else 'cpu')
     num_classes = len(class_to_idx.keys())
     idx_to_class = {class_to_idx[k]:k for k in class_to_idx.keys()}
     counter = {i:[] for i in range(num_classes)}
@@ -223,6 +224,7 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
         images = images + counter[k]
         labels = labels + [k]*len(counter[k])
     images = np.stack(images, axis=0)
+    images.to(device)
 
     model.eval()
     outputs = model(torch.Tensor(images))
