@@ -60,7 +60,7 @@ def train(model, train_loader, optimizer, criterion, device):
         labels = labels.to(device, non_blocking=True)
 
         optimizer.zero_grad()
-        outputs = model(image)
+        outputs, _ = model(image)
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
@@ -86,7 +86,7 @@ def validate(model, val_loader, criterion, device):
             image = image.to(device)
             labels = labels.to(device)
 
-            outputs = model(image)
+            outputs, _ = model(image)
             loss = criterion(outputs, labels)
 
             valid_running_loss += loss.item()
@@ -111,7 +111,7 @@ def eval_model(model, train_loader, val_loader, test_loader, criterion, device):
             image, labels = data
             image = image.to(device)
             labels = labels.to(device)
-            outputs = model(image)
+            outputs, _ = model(image)
             loss = criterion(outputs, labels)
             train_loss += loss.item()
             _, preds = torch.max(outputs.data, 1)
@@ -126,7 +126,7 @@ def eval_model(model, train_loader, val_loader, test_loader, criterion, device):
             image, labels = data
             image = image.to(device)
             labels = labels.to(device)
-            outputs = model(image)
+            outputs, _ = model(image)
             loss = criterion(outputs, labels)
             val_loss += loss.item()
             _, preds = torch.max(outputs.data, 1)
@@ -141,7 +141,7 @@ def eval_model(model, train_loader, val_loader, test_loader, criterion, device):
             image, labels = data
             image = image.to(device)
             labels = labels.to(device)
-            outputs = model(image)
+            outputs, _ = model(image)
             loss = criterion(outputs, labels)
             test_loss += loss.item()
             _, preds = torch.max(outputs.data, 1)
