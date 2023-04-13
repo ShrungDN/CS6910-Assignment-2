@@ -203,6 +203,7 @@ def get_pooling(pool):
 
 def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
     device = ('cuda' if torch.cuda.is_available() else 'cpu')
+    print(device)
     num_classes = len(class_to_idx.keys())
     idx_to_class = {class_to_idx[k]:k for k in class_to_idx.keys()}
     counter = {i:[] for i in range(num_classes)}

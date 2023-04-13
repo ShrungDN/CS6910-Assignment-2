@@ -1,4 +1,5 @@
-# Methodology of sweeps is done as in sweeps.txt
+# Various Sweep Configurations done:
+# Some sweep configs are divided into subparts so as to run the sweep parallelly
 
 # Sweeps 1-8:
 SC1_1 = {
