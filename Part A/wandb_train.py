@@ -1,16 +1,11 @@
 import wandb
 from main import *
-from sweep_configs import *
+from sweep_configs import get_config
 
 args = parse_arguments()
 
 SC = args.sweep_config
-if SC == 'SC1_1':
-  CONFIG = SC1_1
-elif SC == 'SC1_2':
-  CONFIG = SC1_2
-elif SC == 'SC1_3':
-  CONFIG = SC1_3
+CONFIG = get_config(SC)
 
 ENTITY = args.wandb_entity
 PROJECT = args.wandb_project

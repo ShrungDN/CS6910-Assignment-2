@@ -121,3 +121,14 @@ SC2= {
         'sf5': {'values': [5]}
     }
 }
+
+
+def get_config(name):
+    if name == 'SC1_1':
+        return SC1_1
+    elif name == 'SC1_2':
+        return SC1_2
+    elif name == 'SC1_3':
+        return SC1_3
+    elif name == 'SC2':
+        return SC2
