@@ -388,7 +388,7 @@ SC4_8 = {
         'nf5': {'values': [8]},
         'sf1': {'values': [3]},
         'sf2': {'values': [3]},
-        'sf3': {'values': [9]},
+        'sf3': {'values': [3]},
         'sf4': {'values': [9]},
         'sf5': {'values': [9]}
     }
