@@ -143,12 +143,10 @@ if __name__ == '__main__':
     
     if args.view_preds == 'True':
       preds_plot = get_preds_plot(model, test_loader, class_to_idx)
-      # wandb.log({'Predictions': wandb.Image(preds_plot)})
-      wandb.log({'Predictions': preds_plot})
+      wandb.log({'Predictions': wandb.Image(preds_plot)})
     
     if args.visualize_filters == 'True':
       filters_plot = get_filters_plot(model)
-      # wandb.log({'Filters': wandb.Image(filters_plot)})
-      wandb.log({'Filters': filters_plot})
+      wandb.log({'Filters': wandb.Image(filters_plot)})
 
     wandb.finish()    

@@ -225,11 +225,14 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
         images = images + counter[k]
         labels = labels + [k]*len(counter[k])
     images = np.stack(images, axis=0)
+    images = torch.Tensor(images)
+    images.to(device)
 
     model.eval()
-    outputs = model(torch.Tensor(images).to(device))
+    outputs = model(images)
     _, preds = torch.max(outputs.data, 1)
     preds = preds.cpu().numpy()
+    images = images.cpu().numpy()
 
     fig, ax = plt.subplots(num_images, num_classes, figsize=(15, 6))
     ax = ax.reshape(-1, order='F')
