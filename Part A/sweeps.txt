@@ -38,7 +38,7 @@ done 12. lr:1e-5, dropout: 0.3, BN: True
 
 (choose best config from above)
 sweeps 13-13: changing data augmentation: lr=1e-4, da=sweep, dr=0.3, act=ReLU, bn=True, nk=64,64,64,64,64 sk=5,5,5,5,5
-~13. da: False  
+done ~13. da: False  
 done 13. da: True 
 
 (choose best config from above)

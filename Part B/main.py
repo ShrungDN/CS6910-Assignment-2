@@ -10,21 +10,33 @@ from torch.nn import ReflectionPad2d, ZeroPad2d
 from torch.nn import BatchNorm2d, LayerNorm
 from torch.nn import Identity
 from torch.nn import ReLU, GELU, SiLU, Mish
+from torchvision import models
 
 def main():
-    model, n_inp, img_dims = get_model(name='vgg16')
+    model = models.inception_v3(pretrained=True)
+    
+    for param in model.parameters():
+        param.requires_grad = False
 
-    training_layer = Sequential(Linear(n_inp, 500), 
+    # model, n_inp, img_dims = get_model(name='vgg16')
+
+    training_layer = Sequential(Linear(2048, 500), 
                                 ReLU(), 
                                 Dropout(0.3),
                                 Linear(500, 10), 
                                 Softmax(dim=1))
     
-    model.classifier[-1] = training_layer
+    # model.classifier[-1] = training_layer
+    
+    model.fc = training_layer
+
+    inceptionv3_input_dims = (3, 299, 299)
 
     device = ('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Device: {device}\n")
 
     model.to(device, non_blocking=True)
-    summary(model, (3, img_dims[0], img_dims[1]))
+    summary(model, inceptionv3_input_dims)
     print()
+
+    

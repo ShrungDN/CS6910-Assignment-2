@@ -8,7 +8,7 @@ def parse_arguments():
 
     parser.add_argument('-wp', '--wandb_project', type=str, default='ME19B168_CS6910_Assignment2', help='Project name on WandB')
     parser.add_argument('-we', '--wandb_entity', type=str, default='ME19B168', help='Username on WandB')
-    parser.add_argument('-wn', '--wandb_name', type=str, default='main.py_logs', help='Display name of run on WandB')
+    parser.add_argument('-wn', '--wandb_name', type=str, default='assgn2_logs', help='Display name of run on WandB')
     parser.add_argument('-wl', '--wandb_log', type=str, default='False', help='If "True", results are logged into WandB, specified by wandb_project and wandb_entity')
     
     parser.add_argument('-b', '--batch_size', type=int, default=64, help='Batch size used for training')

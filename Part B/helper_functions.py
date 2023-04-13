@@ -256,12 +256,12 @@ def get_filters_plot(model):
     fig.suptitle('Kernels of first Convolutional Layer')
     return fig
 
-def get_model(name):
-    if name == 'vgg16':
-        model = models.vgg16(pretrained=True)
-        n_inp = 4096
+# def get_model(name):
+#     if name == 'vgg16':
+#         model = models.vgg16(pretrained=True)
+#         n_inp = 4096
         
-    for param in model.parameters():
-        param.requires_grad = False
+#     for param in model.parameters():
+#         param.requires_grad = False
     
-    return model, n_inp
+#     return model, n_inp
