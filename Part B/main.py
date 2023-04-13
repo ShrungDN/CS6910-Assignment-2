@@ -65,13 +65,13 @@ def main(config, train_data_path, test_data_path, evaluate_model=False):
     }
 
     for epoch in range(EPOCHS):
-        print(f"Training: Epoch {epoch+1} / {EPOCHS}")
+      print(f"Training: Epoch {epoch+1} / {EPOCHS}")
 
-    train_epoch_loss, train_epoch_acc = train(model, train_loader, optimizer, criterion, device)
-    print(f'Training: Loss = {train_epoch_loss:.4f} Accuracy = {train_epoch_acc:.4f}')
+      train_epoch_loss, train_epoch_acc = train(model, train_loader, optimizer, criterion, device)
+      print(f'Training: Loss = {train_epoch_loss:.4f} Accuracy = {train_epoch_acc:.4f}')
 
-    val_epoch_loss, val_epoch_acc = validate(model, val_loader, criterion, device)
-    print(f'Validation: Loss = {val_epoch_loss:.4f} Accuracy = {val_epoch_acc:.4f}')
+      val_epoch_loss, val_epoch_acc = validate(model, val_loader, criterion, device)
+      print(f'Validation: Loss = {val_epoch_loss:.4f} Accuracy = {val_epoch_acc:.4f}')
 
     logs['epochs'].append(epoch + 1)
     logs['train_loss'].append(train_epoch_loss)
