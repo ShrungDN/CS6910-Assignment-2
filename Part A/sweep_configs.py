@@ -108,7 +108,38 @@ SC2= {
         'data_aug': {'values': ['True']},
         'dropout': {'values': [0.3]},
         'activation': {'values': ['ReLU']},
-        'batch_norm': {'values': [True]},
+        'batch_norm': {'values': ['True']},
+        'nf1': {'values': [64]},
+        'nf2': {'values': [64]},
+        'nf3': {'values': [64]},
+        'nf4': {'values': [64]},
+        'nf5': {'values': [64]},
+        'sf1': {'values': [5]},
+        'sf2': {'values': [5]},
+        'sf3': {'values': [5]},
+        'sf4': {'values': [5]},
+        'sf5': {'values': [5]}
+    }
+}
+
+# Sweeps 14-16
+SC3= {
+    'name': 'SC3',
+    'method': 'grid',
+    'name': 'sweep',
+    'metric': {'goal': 'maximize', 'name': 'val_acc'},
+    'parameters': 
+    {
+        'epochs': {'values': [10]},
+        'batch_size': {'values': [64]},
+        'optimizer': {'values': ['Adam']},
+        'pool': {'values': ['MaxPool2d']},
+        'nfc': {'values': [1000]},
+        'lr': {'values': [1e-4]},
+        'data_aug': {'values': ['False']},
+        'dropout': {'values': [0.3]},
+        'activation': {'values': ['GELU', 'SiLU', 'Mish']},
+        'batch_norm': {'values': ['True']},
         'nf1': {'values': [64]},
         'nf2': {'values': [64]},
         'nf3': {'values': [64]},
@@ -123,6 +154,7 @@ SC2= {
 }
 
 
+
 def get_config(name):
     if name == 'SC1_1':
         return SC1_1
@@ -132,3 +164,5 @@ def get_config(name):
         return SC1_3
     elif name == 'SC2':
         return SC2
+    elif name == 'SC3':
+        return SC3

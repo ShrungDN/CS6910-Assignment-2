@@ -23,27 +23,27 @@ Search space:
 The sweeps are done selectively as follows:
 
 sweeps 1-8: changing dropout, BN and lr: lr=sweep, da=False, dr=sweep, act=ReLU, bn=sweep, nk=64,64,64,64,64 sk=5,5,5,5,5
-1. lr:1e-3, dropout: 0, BN: False
-2. lr:1e-3, dropout: 0.3, BN: False
-3. lr:1e-3, dropout: 0, BN: True
-4. lr:1e-3, dropout: 0.3, BN: True
-5. lr:1e-4, dropout: 0, BN: False
-6. lr:1e-4, dropout: 0.3, BN: False
-7. lr:1e-4, dropout: 0, BN: True
-8. lr:1e-4, dropout: 0.3, BN: True
-9. lr:1e-5, dropout: 0, BN: False
-10. lr:1e-5, dropout: 0.3, BN: False
-11. lr:1e-5, dropout: 0, BN: True
-12. lr:1e-5, dropout: 0.3, BN: True
+done 1. lr:1e-3, dropout: 0, BN: False
+done 2. lr:1e-3, dropout: 0.3, BN: False
+done 3. lr:1e-3, dropout: 0, BN: True
+done 4. lr:1e-3, dropout: 0.3, BN: True
+done 5. lr:1e-4, dropout: 0, BN: False
+done 6. lr:1e-4, dropout: 0.3, BN: False
+done 7. lr:1e-4, dropout: 0, BN: True
+done 8. lr:1e-4, dropout: 0.3, BN: True
+done 9. lr:1e-5, dropout: 0, BN: False
+done 10. lr:1e-5, dropout: 0.3, BN: False
+done 11. lr:1e-5, dropout: 0, BN: True
+done 12. lr:1e-5, dropout: 0.3, BN: True
 
 (choose best config from above)
 sweeps 13-13: changing data augmentation: lr=1e-4, da=sweep, dr=0.3, act=ReLU, bn=True, nk=64,64,64,64,64 sk=5,5,5,5,5
 ~13. da: False  
-13. da: True 
+done 13. da: True 
 
 (choose best config from above)
-sweeps 14-16 :changing activation: lr=1e-4,, da=?, dr=0.3, act=sweep, bn=True, nk=64,64,64,64,64 sk=5,5,5,5,5
-    (ReLU already done)
+sweeps 14-16 :changing activation: lr=1e-4,, da=False, dr=0.3, act=sweep, bn=True, nk=64,64,64,64,64 sk=5,5,5,5,5
+~14. act: ReLU
 14. act:GELU
 15. act:SiLU
 16. act:Mish
