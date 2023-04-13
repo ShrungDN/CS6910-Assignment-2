@@ -237,6 +237,7 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
     ax = ax.reshape(-1, order='F')
     for i in range(len(labels)):
         img = images[i]
+        return img
         print(img.shape)
         img = np.swapaxes(np.swapaxes(img, 1, 2), 0, 2)
         img = img * 0.5 + 0.5
