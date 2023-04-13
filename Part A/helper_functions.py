@@ -228,7 +228,7 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
     images.to(device)
 
     model.eval()
-    outputs = model(device)
+    outputs = model(images)
     _, preds = torch.max(outputs.data, 1)
     preds = preds.cpu().numpy()
     images = images.cpu().numpy()
