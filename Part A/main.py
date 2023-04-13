@@ -64,7 +64,7 @@ def main(config, train_data_path, test_data_path, evaluate_model=False):
   if evaluate_model:
     model_metrics = eval_model(model, train_loader, val_loader, test_loader, criterion, device)
   else:
-    model_metrics = None
+    model_metrics = [None, None, None]
   return model, logs, model_metrics, class_to_idx, test_loader
 
 if __name__ == '__main__':
