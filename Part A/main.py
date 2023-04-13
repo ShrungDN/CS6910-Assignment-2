@@ -144,11 +144,11 @@ if __name__ == '__main__':
     if args.view_preds == 'True':
       preds_plot = get_preds_plot(model, test_loader, class_to_idx)
       wandb.log({'Predictions': wandb.Image(preds_plot)})
-      preds_plot.savefig(f'ME19B168_{NAME}_preds_plot')
+      preds_plot.savefig(f'ME19B168_PartA_{NAME}_preds_plot')
     
     if args.visualize_filters == 'True':
       filters_plot = get_filters_plot(model)
       wandb.log({'Filters': wandb.Image(filters_plot)})
-      filters_plot.savefig(f'ME19B168_{NAME}_filters_plot')
+      filters_plot.savefig(f'ME19B168_PartA_{NAME}_filters_plot')
 
     wandb.finish()    
