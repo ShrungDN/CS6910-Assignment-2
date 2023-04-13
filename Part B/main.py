@@ -146,5 +146,6 @@ if __name__ == '__main__':
     if args.view_preds == 'True':
       preds_plot = get_preds_plot(model, test_loader, class_to_idx)
       wandb.log({'Predictions': wandb.Image(preds_plot)})
+      preds_plot.savefig(f'ME19B168_{NAME}_preds_plot')
     
     wandb.finish()
