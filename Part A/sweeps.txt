@@ -50,10 +50,10 @@ done 16. act:Mish
 
 (choose best config from above)
 sweeps 17-24 :kernel size and number: lr=1e-4,, da=False, dr=0.3, act=GELU, bn=True, nk=sweep sk=sweep
-~~17: nk=64,64,64,64,64 sk=5,5,5,5,5 (done)
-17. nk=64,64,64,64,64 sk=9,9,3,3,3
-18. nk=64,64,64,64,64 sk=3,3,3,9,9
-19: nk=8,16,32,64,128 sk=5,5,5,5,5
+done ~~17: nk=64,64,64,64,64 sk=5,5,5,5,5 (done)
+done 17. nk=64,64,64,64,64 sk=9,9,3,3,3
+done 18. nk=64,64,64,64,64 sk=3,3,3,9,9
+done 19: nk=8,16,32,64,128 sk=5,5,5,5,5
 20. nk=8,16,32,64,128 sk=9,9,3,3,3
 21. nk=8,16,32,64,128 sk=3,3,3,9,9
 22: nk=128,64,32,16,8 sk=5,5,5,5,5
