@@ -23,7 +23,6 @@ def parse_arguments():
     parser.add_argument('-a', '--activation', type=str, default='ReLU', help='Activation function to be used: "ReLU", "GELU", "SiLU" or "Mish"')
     
     parser.add_argument('-vp', '--view_preds', type=str, default='False', help='If "True", it will log image and its predictions on the wandb project (if -wl is also "True")')
-    parser.add_argument('-vf', '--visualize_filters', type=str, default='False', help='If "True", it will log the visualization of filters in 1st convolutional layer')
 
     args = parser.parse_args()
     return args

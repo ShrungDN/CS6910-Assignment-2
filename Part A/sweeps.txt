@@ -43,14 +43,14 @@ done 13. da: True
 
 (choose best config from above)
 sweeps 14-16 :changing activation: lr=1e-4,, da=False, dr=0.3, act=sweep, bn=True, nk=64,64,64,64,64 sk=5,5,5,5,5
-~14. act: ReLU
-14. act:GELU
-15. act:SiLU
-16. act:Mish
+done ~14. act: ReLU
+done 14. act:GELU
+done 15. act:SiLU
+done 16. act:Mish
 
 (choose best config from above)
-sweeps 17-24 :kernel size and number: lr=1e-4,, da=?, dr=0.3, act=?, bn=True, nk=sweep sk=sweep
-~~13: nk=64,64,64,64,64 sk=5,5,5,5,5 (done)
+sweeps 17-24 :kernel size and number: lr=1e-4,, da=False, dr=0.3, act=GELU, bn=True, nk=sweep sk=sweep
+~~17: nk=64,64,64,64,64 sk=5,5,5,5,5 (done)
 17. nk=64,64,64,64,64 sk=9,9,3,3,3
 18. nk=64,64,64,64,64 sk=3,3,3,9,9
 19: nk=8,16,32,64,128 sk=5,5,5,5,5
@@ -60,7 +60,7 @@ sweeps 17-24 :kernel size and number: lr=1e-4,, da=?, dr=0.3, act=?, bn=True, nk
 23. nk=128,64,32,16,8 sk=9,9,3,3,3
 24. nk=128,64,32,16,8 sk=3,3,3,9,9
 
-Choose best model from above sweeps and fine tune further: lr=1e-4, da=?, dr=0.3, act=?, bn=True, nk=? sk=?
+Choose best model from above sweeps and fine tune further: lr=1e-4, da=False, dr=0.3, act=?, bn=True, nk=? sk=?
 
 sweeps 25-35 : epochs:15, lr=[lr_opt, lr_opt*10, lr_opt/10], batch_size: [32, 64], nfc: [1000, 2000]
 ~~25. lr: lr_opt, bs:64, nfc:1000 (done)
