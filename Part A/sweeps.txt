@@ -5,6 +5,7 @@ Search space:
         optimizer: Adam
         pooling layer: MaxPool2d
         dense layer size: 1000
+        loss function: CrossEntropyLoss
 
     # Hyperparameters that are tuned (selectively):
         learning rate: [1e-3, 1e-4, 1e-5]

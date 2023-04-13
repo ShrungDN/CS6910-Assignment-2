@@ -4,7 +4,7 @@ from parse_args import parse_arguments
 
 from torchsummary import summary
 
-def main(config, train_data_path, test_data_path):
+def main(config, train_data_path, test_data_path, evaluate_model=False):
   IMGDIMS = config['IMGDIMS']
   MEAN, STD = config['MEAN_STD']
   DATA_AUG = config['DATA_AUG']
@@ -27,7 +27,6 @@ def main(config, train_data_path, test_data_path):
   print(f"Device: {device}\n")
 
   train_transform, val_test_transform = get_transforms(DATA_AUG, IMGDIMS, MEAN, STD)
-
   train_loader, val_loader, test_loader, class_to_idx = get_data_loaders(train_data_path, train_transform, test_data_path, val_test_transform, BATCH_SIZE)
 
   model = CNNModel(model_config)
@@ -48,19 +47,24 @@ def main(config, train_data_path, test_data_path):
 
   for epoch in range(EPOCHS):
     print(f"Training: Epoch {epoch+1} / {EPOCHS}")
+
     train_epoch_loss, train_epoch_acc = train(model, train_loader, optimizer, criterion, device)
+    print(f'Training: Loss = {train_epoch_loss:.4f} Accuracy = {train_epoch_acc:.4f}')
+
     val_epoch_loss, val_epoch_acc = validate(model, val_loader, criterion, device)
-    
+    print(f'Validation: Loss = {val_epoch_loss:.4f} Accuracy = {val_epoch_acc:.4f}')
+
     logs['epochs'].append(epoch + 1)
     logs['train_loss'].append(train_epoch_loss)
     logs['train_acc'].append(train_epoch_acc)
     logs['val_loss'].append(val_epoch_loss)
     logs['val_acc'].append(val_epoch_acc)
-
-    print(f'Training: Loss = {train_epoch_loss:.4f} Accuracy = {train_epoch_acc:.4f}  Validation: Loss = {val_epoch_loss:.4f} Accuracy = {val_epoch_acc:.4f}')
     print('-'*50)
 
-  model_metrics = eval_model(model, train_loader, val_loader, test_loader, criterion, device)
+  if evaluate_model:
+    model_metrics = eval_model(model, train_loader, val_loader, test_loader, criterion, device)
+  else:
+    model_metrics = None
   return model, logs, model_metrics, class_to_idx, test_loader
 
 if __name__ == '__main__':
@@ -83,7 +87,7 @@ if __name__ == '__main__':
             'SIZE_FILTERS': [args.size_filters1, args.size_filters2, args.size_filters3, args.size_filters4, args.size_filters5]
             }
   
-  model, logs, model_metrics, class_to_idx, test_loader = main(config, args.train_data_path, args.test_data_path)
+  model, logs, model_metrics, class_to_idx, test_loader = main(config, args.train_data_path, args.test_data_path, evaluate_model=True)
 
   print('Final Model Metrics:')
   print('Training: Accuracy = {} Loss = {}'.format(model_metrics['train_acc'], model_metrics['train_loss']))
