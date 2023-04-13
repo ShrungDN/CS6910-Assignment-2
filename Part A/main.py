@@ -142,8 +142,8 @@ if __name__ == '__main__':
     wandb.log({'Test Accuracy': model_metrics['test_acc']})
     
     if args.view_preds == 'True':
-      preds_plot = get_preds_plot(model, test_loader, class_to_idx)
-      print(preds_plot)
+      # preds_plot = get_preds_plot(model, test_loader, class_to_idx)
+      preds_plot, ax = plt.subplots(5, 5)
       wandb.log({'Predictions': wandb.Image(preds_plot)})
     
     if args.visualize_filters == 'True':
