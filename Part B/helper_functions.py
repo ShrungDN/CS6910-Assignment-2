@@ -226,7 +226,7 @@ def get_preds_plot(model, test_loader, class_to_idx, num_images=3):
         labels = labels + [k]*len(counter[k])
     images = np.stack(images, axis=0)
     images = torch.Tensor(images)
-    images.to(device)
+    images = images.to(device)
 
     model.eval()
     outputs = model(images)
