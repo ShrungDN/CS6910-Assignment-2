@@ -54,24 +54,10 @@ done ~~17: nk=64,64,64,64,64 sk=5,5,5,5,5 (done)
 done 17. nk=64,64,64,64,64 sk=9,9,3,3,3
 done 18. nk=64,64,64,64,64 sk=3,3,3,9,9
 done 19: nk=8,16,32,64,128 sk=5,5,5,5,5
-20. nk=8,16,32,64,128 sk=9,9,3,3,3
-21. nk=8,16,32,64,128 sk=3,3,3,9,9
-22: nk=128,64,32,16,8 sk=5,5,5,5,5
-23. nk=128,64,32,16,8 sk=9,9,3,3,3
-24. nk=128,64,32,16,8 sk=3,3,3,9,9
+done 20. nk=8,16,32,64,128 sk=9,9,3,3,3
+done 21. nk=8,16,32,64,128 sk=3,3,3,9,9
+done 22: nk=128,64,32,16,8 sk=5,5,5,5,5
+done 23. nk=128,64,32,16,8 sk=9,9,3,3,3
+done 24. nk=128,64,32,16,8 sk=3,3,3,9,9
 
-Choose best model from above sweeps and fine tune further: lr=1e-4, da=False, dr=0.3, act=?, bn=True, nk=? sk=?
-
-sweeps 25-35 : epochs:15, lr=[lr_opt, lr_opt*10, lr_opt/10], batch_size: [32, 64], nfc: [1000, 2000]
-~~25. lr: lr_opt, bs:64, nfc:1000 (done)
-25. lr:lr_opt, bs:64, nfc:2000
-26. lr:lr_opt, bs:32, nfc:1000
-27. lr:lr_opt, bs:32, nfc:2000
-28. lr:lr_opt*10, bs:64, nfc:1000
-29. lr:lr_opt*10, bs:64, nfc:2000
-30. lr:lr_opt*10, bs:32, nfc:1000
-31. lr:lr_opt*10, bs:32, nfc:2000
-32. lr:lr_opt/10, bs:64, nfc:1000
-33. lr:lr_opt/10, bs:64, nfc:2000
-34. lr:lr_opt/10, bs:32, nfc:1000
-35. lr:lr_opt/10, bs:32, nfc:2000
+Choose best model from above sweeps and fine tune further: lr=1e-4, da=False, dr=0.3, act=done , bn=True, nk=64,64,64,64,64, sk=3,3,3,9,9

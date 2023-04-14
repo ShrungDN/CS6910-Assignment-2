@@ -17,9 +17,9 @@ def parse_arguments():
     parser.add_argument('-o', '--optimizer', type=str, default='Adam', help='Optimizer to be used: "Adam", "Adadelta", "Adagrad", "NAdam", or "RMSprop"')
     parser.add_argument('-nfc', '--num_fc', type=int, default=1000, help='Number of neurons in the fully connected layer')
 
-    parser.add_argument('-lr', '--learning_rate', type=float, default=1e-3, help='Learning Rate to be used')
-    parser.add_argument('-da', '--data_aug', type=str, default='True', help='If "True", the data is augmented before training')
-    parser.add_argument('-dr', '--dropout', type=float, default=0.0, help='Dropout parameter between 0 and 1')
+    parser.add_argument('-lr', '--learning_rate', type=float, default=1e-4, help='Learning Rate to be used')
+    parser.add_argument('-da', '--data_aug', type=str, default='False', help='If "True", the data is augmented before training')
+    parser.add_argument('-dr', '--dropout', type=float, default=0.3, help='Dropout parameter between 0 and 1')
     parser.add_argument('-a', '--activation', type=str, default='ReLU', help='Activation function to be used: "ReLU", "GELU", "SiLU" or "Mish"')
     
     parser.add_argument('-vp', '--view_preds', type=str, default='False', help='If "True", it will log image and its predictions on the wandb project (if -wl is also "True")')
