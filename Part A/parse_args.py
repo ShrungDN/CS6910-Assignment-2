@@ -15,8 +15,8 @@ def parse_arguments():
     parser.add_argument('-e', '--epochs', type=int, default=10, help='Number of training epochs')
     parser.add_argument('-l', '--loss', type=str, default='CrossEntropyLoss', help='Loss function: "CrossEntropyLoss"')
     parser.add_argument('-o', '--optimizer', type=str, default='Adam', help='Optimizer to be used: "Adam", "Adadelta", "Adagrad", "NAdam", or "RMSprop"')
-    parser.add_argument('-dimsw', '--dimsw', type=int, default=256, help='Width of resized image')
-    parser.add_argument('-dimsh', '--dimsh', type=int, default=256, help='height of resized image')
+    parser.add_argument('-dimsw', '--dimsw', type=int, default=256, help='Width to resize image to for training')
+    parser.add_argument('-dimsh', '--dimsh', type=int, default=256, help='Height to resize image to for training')
     parser.add_argument('-p', '--pool', type=str, default='MaxPool2d', help='Pooling Layer: "MaxPool2d", "AvgPool2d", "AdaptiveMaxPool2d" or "AdaptiveAvgPool2d"')
     parser.add_argument('-nfc', '--num_fc', type=int, default=1000, help='Number of neurons in the fully connected layer')
 

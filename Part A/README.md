@@ -1,56 +1,72 @@
 # CS6910
-Shrung D N - ME19B168 - Assignment 1
+Shrung D N - ME19B168 - Assignment 2
+
+A brief description of the files in the directory is given below:
 
 **helper_functions.py**: 
-Python file with helper functions.
+Python file with helper functions - such as functions used to train the model, load the dataset, transform the dataset, etc.
 
 
-**nerual_network_functions.py**:
-Python file with functions that are used to perform the various operations in a neural network - forward pass, backpropagation, etc.
+**main.py**:
+Python file that is used to train a single model. The hyperparameters used to train this model can be passed as arguments as shown later in this documentation.
+
+
+**model.py**:
+Python file with the structure of the CNN model used in the assignment. I have used a model with 5 convolution layers followed by 1 hidden dense layer and an output layer. 
 
 
 **parse_args.py**:
-Python file to parse the arguments provided by the user for the train.py file in the terminal. 
+Python file used to parse the arguments sent through the command line. It is used to interact with main.py and wandb_train.py via the command line.
 
 
-**sweep_configurations.py**:
-Python file with various sweep configurations used by wandb_train.py, for hyperparameter tuning. The sweep configuration can be changed by editing the wandb.py file
+**sweep_configs.py**:
+Python file with various sweep configurations for hyperparameter tuning using the WandB API.
 
 
-**train.py**:
-Python file that accepts arguments from the user and trains a feed forward neural network. It also displays the evaluation metrics of the model and can additionally log the results onto WandB if required. 
+**sweeps.txt**:
+Text file with the different sweep configurations run for hyperparameter tuning.
 
 
 **wandb_train.py**:
-Python file that makes use of train.py to log results onto WandB. It is used for hyperparameter search. 
+Python file that makes use of main.py to iteratively train multiple models using different hyperparameters (as defined by the sweep configuration obtained from sweep_configs.py)
 
 
-The following are the arguments that train.py takes. Using the help command shows a more detailed description of what each of the arguments do. 
+The sript to train a particular model is done through the main.py. The script used to tune hyperparameters is done through the wandb_train.py file.
 
-**train.py Usage**
+**main.py Usage**
 ```
-usage: python3 train.py [-h --help] 
-                        [-wp --wandb_project] <string>
-                        [-we --wandb_entity] <string>
-                        [-wn --wandb_name] <string>
-                        [-wl --wandb_log] <"True", "False">
-                        [-d --dataset] <"fashion_mnist", "mnist">
-                        [-e --epochs] <int>
-                        [-b --batch_size] <int>
-                        [-l --loss] <"cross_entropy", "mean_squared_error">
-                        [-o --optimizer] <"sgd", "momentum", "nag", "rmsprop", "adam", "nadam">
-                        [-lr --learning_rate] <float>
-                        [-m --momentum] <float>
-                        [-beta --beta] <float>
-                        [-beta1 --beta1] <float>
-                        [-beta2 --beta2] <float>
-                        [-eps --epsilon] <float>
-                        [-w_d --weight_decay] <float>
-                        [-w_i --weight_init] <"random", "Xavier">
-                        [-nhl --num_layers] <int>
-                        [-sz --hidden_size] <int>
-                        [-a --activation] <"identity", "sigmoid", "tanh", "ReLU">
-                        [-ds --data_scaling] <"min_max", "standard">       	
+usage: python3 main.py [-h --help] 
+                       [-tdp --train_data_path] <string> Path to directory with training data 
+                       [-tedp --test_data_path] <string> Path to directory with testing data
+                       [-wp --wandb_project] <string> Name of WandB Project
+                       [-we --wandb_entity] <string> Username of WandB user
+                       [-wn --wandb_name] <string> Name of WandB run
+                       [-wl --wandb_log] <"True", "False"> Uploads logs into WandB if True
+                       [-e --epochs] <int> Number of epochs to train the model
+                       [-b --batch_size] <int> Batch size for training
+                       [-l --loss] <"cross_entropy", "mean_squared_error"> Loss function to use for training
+                       [-o --optimizer] <"Adam", "Adadelta", "Adagrad", "NAdam", "RMSprop"> Optimizer to use for training
+                       [-dimsw --dimsw] <int> Width to resize input image to for training
+                       [-dimsh --dimsh] <int> Height to resize input image to for training
+                       [-p --pool] <"MaxPool2d", "AvgPool2d", "AdaptiveMaxPool2d", "AdaptiveAvgPool2d"> Pooling layer to use for training
+                       [-nfc --num_fc] <int> Number of neurons in hidden dense layer
+                       [-lr --learning_rate] <float> Learning rate to use for training
+                       [-da --data_aug] <"True", "False"> Data is augmented during training if True
+                       [-dr --dropout] <float> Dropout parameter to use  
+                       [-a --activation] <"ReLU", "GELU", "SiLU", "Mish"> Activation function to use for training
+                       [-bn --batch_norm] <"True", "False"> Batch norm used in model if True  
+                       [-nf1 --num_filters1] <int> Number of filters to be used in 1st convolution layer
+                       [-nf2 --num_filters2] <int> Number of filters to be used in 2nd convolution layer  
+                       [-nf3 --num_filters3] <int> Number of filters to be used in 3rd convolution layer  
+                       [-nf4 --num_filters4] <int> Number of filters to be used in 4th convolution layer  
+                       [-nf5 --num_filters5] <int> Number of filters to be used in 5th convolution layer  
+                       [-sf1 --size_filters1] <int> Size of filters to be used in 1st convolution layer  
+                       [-sf2 --size_filters2] <int> Size of filters to be used in 2nd convolution layer  
+                       [-sf3 --size_filters3] <int> Size of filters to be used in 3rd convolution layer  
+                       [-sf4 --size_filters4] <int> Size of filters to be used in 4th convolution layer  
+                       [-sf5 --size_filters5] <int> Size of filters to be used in 5th convolution layer  
+                       [-vp --view_preds] <"True", "False> Logs image and predictions on WandB if True (-wl must also be True)
+                       [-vf --visualize_filters] <"True", "False"> Logs filters of 1st convolution layer on WandB if True (-wl must also be True)     	
 ```
 
 Optimal Hyperparameters found for Fashion MNIST dataset:
