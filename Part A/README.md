@@ -1,5 +1,5 @@
 # CS6910
-Shrung D N - ME19B168 - Assignment 2
+Shrung D N - ME19B168 - Assignment 2 - Part A
 
 A brief description of the files in the directory is given below:
 
@@ -84,7 +84,8 @@ usage: python3 wandb_train.py [-h --help]
                        [-sc --sweep_config] <"SC1_1", "SC1_2", "SC1_3", "SC2", "SC3", "SC4_1", "SC4_2", "SC4_3", "SC4_4", "SC4_5", "SC4_6", "SC4_7", "SC4_8"> Sweep configuration to be used from sweep_configs.py for hyperparameter tuning 	
 ```
 
-Optimal Hyperparameters (along with other parameters) found through hyperparameter search:
+
+**Optimal Hyperparameters** (along with other parameters) found through hyperparameter search:
 ```
 epochs: 10
 batch_size: 64
