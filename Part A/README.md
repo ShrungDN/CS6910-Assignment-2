@@ -44,7 +44,7 @@ usage: python3 main.py [-h --help]
                        [-wl --wandb_log] <"True", "False"> Uploads logs into WandB if True
                        [-e --epochs] <int> Number of epochs to train the model
                        [-b --batch_size] <int> Batch size for training
-                       [-l --loss] <"cross_entropy", "mean_squared_error"> Loss function to use for training
+                       [-l --loss] <"CrossEntropyLoss"> Loss function to use for training
                        [-o --optimizer] <"Adam", "Adadelta", "Adagrad", "NAdam", "RMSprop"> Optimizer to use for training
                        [-dimsw --dimsw] <int> Width to resize input image to for training
                        [-dimsh --dimsh] <int> Height to resize input image to for training
@@ -69,30 +69,44 @@ usage: python3 main.py [-h --help]
                        [-vf --visualize_filters] <"True", "False"> Logs filters of 1st convolution layer on WandB if True (-wl must also be True)     	
 ```
 
-Optimal Hyperparameters found for Fashion MNIST dataset:
 
-epochs: 30
+**wandb_train.py Usage**
+```
+usage: python3 wandb_train.py [-h --help] 
+                       [-tdp --train_data_path] <string> Path to directory with training data 
+                       [-tedp --test_data_path] <string> Path to directory with testing data
+                       [-wp --wandb_project] <string> Name of WandB Project
+                       [-we --wandb_entity] <string> Username of WandB user
+                       [-wn --wandb_name] <string> Name of WandB run
+                       [-l --loss] <"cross_entropy", "mean_squared_error"> Loss function to use for training
+                       [-dimsw --dimsw] <int> Width to resize input image to for training
+                       [-dimsh --dimsh] <int> Height to resize input image to for training 
+                       [-sc --sweep_config] <"SC1_1", "SC1_2", "SC1_3", "SC2", "SC3", "SC4_1", "SC4_2", "SC4_3", "SC4_4", "SC4_5", "SC4_6", "SC4_7", "SC4_8"> Sweep configuration to be used from sweep_configs.py for hyperparameter tuning 	
+```
 
-batch_size: 128
-
-loss: cross_entropy
-
-optimizer: adam
-
+Optimal Hyperparameters (along with other parameters) found through hyperparameter search:
+```
+epochs: 10
+batch_size: 64
+loss: CrossEntropyLoss
+optimizer: Adam
+dimsw: 256
+dimsh: 256
+pool: MaxPool2d
+nfc: 1000
 learning_rate: 0.0001
-
-beta1: 0.8
-
-beta2: 0.999
-
-epsilon: 0.000001
-
-weight_decay: 0.3
-
-weight_init: Xavier 
-
-num_layers: 5
-
-hidden_size: 128
-
-activation: ReLU
+data_aug: False
+dropout: 0.3
+activation: GELU
+batch_norm: True
+nf1: 64
+nf2: 64
+nf3: 64
+nf4: 64
+nf5: 64
+sf1: 3
+sf2: 3
+sf3: 3
+sf4: 9
+sf5: 9
+```
