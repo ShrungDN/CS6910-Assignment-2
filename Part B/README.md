@@ -1,7 +1,7 @@
 # CS6910
 Shrung D N - ME19B168 - Assignment 2 - Part B
 
-A brief description of the files in the directory is given below:
+## Description of files
 
 **helper_functions.py**: 
 Python file with helper functions - such as functions used to train the model, load the dataset, transform the dataset, etc.
@@ -17,7 +17,7 @@ Python file used to parse the arguments sent through the command line. It is use
 
 The sript to train a model is done through the main.py.
 
-**main.py Usage**
+## main.py Usage
 ```
 usage: python3 main.py [-h --help] 
                        [-tdp --train_data_path] <string> Path to directory with training data 

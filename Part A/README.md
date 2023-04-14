@@ -85,7 +85,8 @@ usage: python3 wandb_train.py [-h --help]
 ```
 
 
-## Optimal Hyperparameters (along with other parameters) found through hyperparameter search:
+## Optimal Hyperparameters
+Optimal hyperparameters (along with other parameters) found through hyperparameter search:
 ```
 epochs: 10
 batch_size: 64
