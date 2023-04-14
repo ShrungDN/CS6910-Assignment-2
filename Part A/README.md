@@ -1,7 +1,7 @@
 # CS6910
 Shrung D N - ME19B168 - Assignment 2 - Part A
 
-A brief description of the files in the directory is given below:
+## Description of files:
 
 **helper_functions.py**: 
 Python file with helper functions - such as functions used to train the model, load the dataset, transform the dataset, etc.
@@ -33,7 +33,7 @@ Python file that makes use of main.py to iteratively train multiple models using
 
 The sript to train a particular model is done through the main.py. The script used to tune hyperparameters is done through the wandb_train.py file.
 
-**main.py Usage**
+## main.py Usage
 ```
 usage: python3 main.py [-h --help] 
                        [-tdp --train_data_path] <string> Path to directory with training data 
@@ -70,7 +70,7 @@ usage: python3 main.py [-h --help]
 ```
 
 
-**wandb_train.py Usage**
+## wandb_train.py Usage
 ```
 usage: python3 wandb_train.py [-h --help] 
                        [-tdp --train_data_path] <string> Path to directory with training data 
@@ -85,7 +85,7 @@ usage: python3 wandb_train.py [-h --help]
 ```
 
 
-**Optimal Hyperparameters** (along with other parameters) found through hyperparameter search:
+## Optimal Hyperparameters (along with other parameters) found through hyperparameter search:
 ```
 epochs: 10
 batch_size: 64
